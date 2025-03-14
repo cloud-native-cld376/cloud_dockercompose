@@ -12,12 +12,12 @@ let users = [
 ];
 
 // GET - Fetch all users
-app.get('/api/users', (req, res) => {
+app.get('/users', (req, res) => {
   res.json(users);
 });
 
 // GET - Fetch user by ID
-app.get('/api/users/:id', (req, res) => {
+app.get('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const user = users.find(user => user.id === id);
   
@@ -29,7 +29,7 @@ app.get('/api/users/:id', (req, res) => {
 });
 
 // POST - Create a new user
-app.post('/api/users', (req, res) => {
+app.post('/register/users', (req, res) => {
   const { name, email } = req.body;
   
   if (!name || !email) {
@@ -44,7 +44,7 @@ app.post('/api/users', (req, res) => {
 });
 
 // PUT - Update a user
-app.put('/api/users/:id', (req, res) => {
+app.put('/update/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { name, email } = req.body;
   
@@ -64,7 +64,7 @@ app.put('/api/users/:id', (req, res) => {
 });
 
 // DELETE - Remove a user
-app.delete('/api/users/:id', (req, res) => {
+app.delete('/delete/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const userIndex = users.findIndex(user => user.id === id);
   
@@ -80,7 +80,7 @@ app.delete('/api/users/:id', (req, res) => {
 
 // Root endpoint
 app.get('/', (req, res) => {
-  res.send('API is running! Use /api/users endpoints to interact with the API.');
+  res.send('API is running! Use /users endpoints to interact with the API.');
 });
 
 app.listen(PORT, () => {
